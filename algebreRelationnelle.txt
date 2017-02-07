@@ -1,14 +1,14 @@
 Requêtes en algèbre relationnelle
 
 Requête 1.
-	PROJECTION Sigle, Titre (SELECTION Prenom = 'Jean' ET Nom = 'Tremblay' (Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE Cours))
+	PROJECTION sigle, titre (SELECTION Prenom = 'Jean' ET Nom = 'Tremblay' (Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE Cours))
 
 Requête 2.
-	PROJECTION CodePermanent, Prenom, Nom (SELECTION DateDebut <= 01/02/2004 ET DateFin >= 28/02/2004 ( Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE SessionUQAM))
+	PROJECTION codePermanent, prenom, nom (SELECTION DateDebut <= 01/02/2004 ET DateFin >= 28/02/2004 ( Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE SessionUQAM))
 
 Requête 3.
-	PROJECTION Sigle, NoGroupe (SELECTION Nom = 'Tremblay' ET Prenom = 'Lucie' ET codeSession = 32003 (Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE GroupeCours))
+	PROJECTION sigle, noGroupe (SELECTION Nom = 'Tremblay' ET Prenom = 'Lucie' ET codeSession = 32003 (Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE GroupeCours))
 
 Requête 4.
-	PROJECTION codePermanent, Nom (SELECTION sigle = 'INF3180' ET codeSession = 32003 ET dateAbandon = NULL (Etudiant JOINTURE NATURELLE Inscription))
+	PROJECTION codePermanent, nom (SELECTION sigle = 'INF3180' ET codeSession = 32003 ET dateAbandon = NULL (Etudiant JOINTURE NATURELLE Inscription))
 
