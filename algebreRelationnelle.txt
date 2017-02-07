@@ -1,0 +1,9 @@
+Requêtes en algèbre relationnelle
+
+Requête 1.
+	PROJECTION Sigle, Titre (SELECTION CodePermanent = 'TREJ18088001' (Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE Cours))
+
+Requête 2.
+	PROJECTION CodePermanent, Prenom, Nom (SELECTION DateDebut <= 01/02/2004 ET DateFin >= 28/02/2004 ( Etudiant JOINTURE NATURELLE Inscription JOINTURE NATURELLE SessionUQAM))
+
+Requête 3.
