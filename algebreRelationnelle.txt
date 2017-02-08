@@ -12,3 +12,5 @@ Requête 3.
 Requête 4.
 	PROJECTION codePermanent, nom (SELECTION sigle = 'INF3180' ET codeSession = 32003 ET dateAbandon = NULL (Etudiant JOINTURE NATURELLE Inscription))
 
+Requête 6.
+	PROJECTION nom, prenom, SUM(nbCredits) (SELECTION codeProgramme = 7416 ET note >= 70 (Cours JOINTURE NATURELLE Inscription JOINTURE NATURELLE Etudiant))
