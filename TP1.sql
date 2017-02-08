@@ -29,3 +29,13 @@
  /
 
  --Req5
+ SELECT codeProfesseur, nom
+ FROM Professeur
+ WHERE codeProfesseur IN (
+        SELECT codeProfesseur
+        FROM Professeur NATURAL JOIN SessionUQAM NATURAL JOIN GroupeCours
+        WHERE codeSession = 32003
+        GROUP BY codeProfesseur
+        HAVING COUNT(*) <= 1
+        )
+ /
