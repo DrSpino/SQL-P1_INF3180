@@ -32,17 +32,25 @@
  SELECT codeProfesseur, nom
  FROM   Professeur
  WHERE  codeProfesseur IN (
-         SELECT codeProfesseur
-         FROM Professeur NATURAL JOIN SessionUQAM NATURAL JOIN GroupeCours
-         WHERE codeSession = 32003
-         GROUP BY codeProfesseur
-         HAVING COUNT(*) <= 1
+        SELECT codeProfesseur
+        FROM Professeur NATURAL JOIN SessionUQAM NATURAL JOIN GroupeCours
+        WHERE codeSession = 32003
+        GROUP BY codeProfesseur
+        HAVING COUNT(*) <= 1
         )
  /
- 
+
  --Req6
- SELECT nom||prenom, SUM(nbCredits) AS nbCredits
- FROM Cours NATURAL JOIN Inscription NATURAL JOIN Etudiant
- WHERE codeProgramme = 7416 AND note >= 70
- GROUP BY nom||prenom
+ SELECT (nom || ' ' || prenom) Nom, SUM(nbCredits) AS nbCredits
+ FROM   Cours NATURAL JOIN Inscription NATURAL JOIN Etudiant
+ WHERE  codeProgramme = 7416 AND note >= 70
+ GROUP BY nom || ' ' || prenom
+ /
+
+ --Req7
+ SELECT (sigle || ' ' || noGroupe) AS Cours, COUNT(codePermanent) AS nbInscrit,
+         COUNT(note) AS nbNotes, AVG(note) AS moyenne
+ FROM   GroupeCours NATURAL JOIN Inscription
+ WHERE  codeSession = 32003
+ GROUP BY sigle || ' ' || noGroupe
  /
