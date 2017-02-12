@@ -54,3 +54,16 @@
  WHERE  codeSession = 32003
  GROUP BY sigle || ' ' || noGroupe
  /
+ 
+ --Req9
+ SELECT DISTINCT codePermanent, nom
+ FROM   Etudiant NATURAL JOIN Inscription
+ WHERE  note >= 65
+ /
+
+ --Req10
+ SELECT sigle, titre
+ FROM   Cours
+ WHERE  UPPER(titre) LIKE 'PROGRAMMATION%' AND
+        UPPER(titre) NOT LIKE '%OBJET%'
+ /
