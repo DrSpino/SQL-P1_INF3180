@@ -55,6 +55,18 @@
  GROUP BY sigle, noGroupe
  /
  
+ --Req8
+ DROP VIEW MoyenneParGroupe
+ /
+ CREATE VIEW MoyenneParGroupe AS
+        SELECT  sigle, noGroupe, codeSession, AVG(note) AS moyenne
+        FROM    GroupeCours NATURAL JOIN Inscription
+        GROUP BY sigle, noGroupe, codeSession
+ /
+ SELECT *
+ FROM   MoyenneParGroupe
+ /
+ 
  --Req9
  SELECT DISTINCT codePermanent, nom
  FROM   Etudiant NATURAL JOIN Inscription
