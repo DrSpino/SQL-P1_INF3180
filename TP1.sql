@@ -5,7 +5,7 @@
  /
 
  -- Req1
- SELECT sigle, titre
+ SELECT DISTINCT sigle, titre
  FROM   Inscription NATURAL JOIN Cours NATURAL JOIN Etudiant
  WHERE  nom = 'Tremblay' AND prenom = 'Jean'
  /
@@ -18,8 +18,8 @@
 
  -- Req3
  SELECT sigle, noGroupe
- FROM   Inscription NATURAL JOIN Etudiant NATURAL JOIN Cours
- WHERE  nom = 'Tremblay' AND prenom = 'Lucie'AND codeSession = 32003
+ FROM   Inscription NATURAL JOIN Etudiant
+ WHERE  nom = 'Tremblay' AND prenom = 'Lucie' AND codeSession = 32003
  /
 
  --Req4
