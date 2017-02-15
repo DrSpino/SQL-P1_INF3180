@@ -79,3 +79,20 @@
  WHERE  UPPER(titre) LIKE 'PROGRAMMATION%' AND
         UPPER(titre) NOT LIKE '%OBJET%'
  /
+ 
+ --Req11
+ SELECT codePermanent, AVG(note) AS moyenne
+ FROM   Inscription
+ WHERE  codeSession = 32003
+ GROUP BY codePermanent
+ HAVING AVG(note) > 80
+ /
+
+ --Req12
+ SELECT nom, prenom, SUM(CASE WHEN nbCredits IS NULL THEN 0 ELSE nbCredits END) AS nbCredit
+ FROM   Professeur
+                LEFT JOIN GroupeCours ON Professeur.codeProfesseur = GroupeCours.codeProfesseur
+                LEFT JOIN Cours ON  GroupeCours.sigle =  Cours.sigle
+ GROUP BY nom, prenom
+ ORDER BY nbCredit DESC
+ /
