@@ -96,3 +96,32 @@
  GROUP BY nom, prenom
  ORDER BY nbCredit DESC
  /
+ 
+  --Req13
+ SELECT codePermanent, sigle, noGroupe, codeSession, dateAbandon, (dateAbandon - dateDebut) AS nbJours
+ FROM   SessionUQAM NATURAL JOIN Inscription
+ WHERE  (dateAbandon - dateDebut) >= 15
+ /
+
+ --Req14
+ SELECT sigle, noGroupe, codeSession
+ FROM   GroupeCours
+ MINUS
+ SELECT sigle, noGroupe, codeSession
+ FROM   GroupeCours NATURAL JOIN Inscription
+ /
+
+ --Req15
+ DROP VIEW Etudiants
+ /
+ CREATE VIEW Etudiants AS
+        SELECT nom as leNom, prenom as lePrenom, codePermanent
+        FROM Etudiant
+ /
+ SELECT DISTINCT leNom, lePrenom
+ FROM   Etudiants NATURAL JOIN Inscription NATURAL JOIN GroupeCours NATURAL JOIN Professeur
+ WHERE  prenom = 'Blaise' AND nom = 'Pascal'
+ /
+
+ EXIT
+ /
