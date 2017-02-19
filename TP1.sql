@@ -89,15 +89,15 @@
  /
 
  --Req12
- SELECT nom, prenom, SUM(CASE WHEN nbCredits IS NULL THEN 0 ELSE nbCredits END) AS nbCredit
+ SELECT nom, prenom, SUM(NVL(nbCredits,0)) AS nbCredit
  FROM   Professeur
                 LEFT JOIN GroupeCours ON Professeur.codeProfesseur = GroupeCours.codeProfesseur
                 LEFT JOIN Cours ON  GroupeCours.sigle =  Cours.sigle
  GROUP BY nom, prenom
  ORDER BY nbCredit DESC
  /
- 
-  --Req13
+
+ --Req13
  SELECT codePermanent, sigle, noGroupe, codeSession, dateAbandon, (dateAbandon - dateDebut) AS nbJours
  FROM   SessionUQAM NATURAL JOIN Inscription
  WHERE  (dateAbandon - dateDebut) >= 15
@@ -112,15 +112,12 @@
  /
 
  --Req15
- DROP VIEW Etudiants
- /
- CREATE VIEW Etudiants AS
-        SELECT nom as leNom, prenom as lePrenom, codePermanent
-        FROM Etudiant
- /
  SELECT DISTINCT leNom, lePrenom
- FROM   Etudiants NATURAL JOIN Inscription NATURAL JOIN GroupeCours NATURAL JOIN Professeur
+ FROM   (SELECT nom as leNom, prenom as lePrenom, codePermanent
+                 FROM   Etudiant) E NATURAL JOIN
+                Inscription NATURAL JOIN GroupeCours NATURAL JOIN Professeur
  WHERE  prenom = 'Blaise' AND nom = 'Pascal'
+ ORDER BY leNom, lePrenom
  /
 
  EXIT
