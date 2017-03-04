@@ -3,6 +3,9 @@
 
  ALTER SESSION SET NLS_DATE_FORMAT = 'DD/MM/YYYY'
  /
+ 
+ SET SERVEROUTPUT ON
+ /
 
  -- Req1
  SELECT DISTINCT sigle, titre
@@ -94,7 +97,7 @@
                 LEFT JOIN GroupeCours ON Professeur.codeProfesseur = GroupeCours.codeProfesseur
                 LEFT JOIN Cours ON  GroupeCours.sigle =  Cours.sigle
  GROUP BY nom, prenom
- ORDER BY nbCredit DESC
+ ORDER BY nbCredit DESC, nom ASC, prenom ASC
  /
 
  --Req13
