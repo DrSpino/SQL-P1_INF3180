@@ -6,6 +6,9 @@
  
  SET SERVEROUTPUT ON
  /
+ 
+ SPOOL TP1.out
+ /
 
  -- Req1
  SELECT DISTINCT sigle, titre
